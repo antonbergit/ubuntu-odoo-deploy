@@ -1,0 +1,10 @@
+odoo-install sequence
+
+1. Install scripts
+2. Create non-root user
+3. odoo-install
+4. chnod
+5. odoo-helper-server start
+
+
+i.3. [sodo] odoo-install --install-dir <directory to install like /opt/odoo-16.0> --odoo-version <versoin number like 16.0> --single-branch on --build-python 3.8.10 --db-host localhost --db-user odoo --db-pass odoo --http-port 8669 --conf-opt-xmlrpc_port 8669 --conf-opt-admin_passwd PASSWD --sys-deps --ikwid
