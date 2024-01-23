@@ -18,3 +18,4 @@ odoo-helper install pre-requirements
 
 
 i.3. [sodo] odoo-install --install-dir <directory to install like /opt/odoo-16.0> --odoo-version <versoin number like 16.0> --single-branch on --build-python 3.8.10 --db-host localhost --db-user odoo --db-pass odoo --http-port 8669 --conf-opt-xmlrpc_port 8669 --conf-opt-admin_passwd PASSWD --sys-deps --ikwid
+sudo odoo-install --install-dir /opt/profigas-16-ce --odoo-version 16.0 --single-branch on --build-python 3.8.10 --db-host localhost --db-user odoo --db-pass odoo --conf-opt-admin_passwd SpocOdooAdmin --sys-deps --ikwid
