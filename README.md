@@ -1,1 +1,1 @@
-wget -O /root/.bash https://gitlab.com/katyukha/odoo-helper-scripts/raw/master/install-system.bash;
+wget -O /root/odoo-17-prod-install.bash https://github.com/antonbergit/ubuntu-odoo-deploy/blob/main/release/odoo-17-prod-install.sh;
