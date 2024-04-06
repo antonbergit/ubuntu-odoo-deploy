@@ -33,7 +33,7 @@ timedatectl set-timezone Europe/Kiev
 
 apt install nginx -y
 apt install snapd -y
-snap install --classic certbot
+snap install --classic certbot -y
 
 wget -O /tmp/odoo-helper-install.bash https://gitlab.com/katyukha/odoo-helper-scripts/raw/master/install-system.bash;
 bash /tmp/odoo-helper-install.bash -y;
