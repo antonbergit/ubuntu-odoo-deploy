@@ -36,7 +36,7 @@ apt install snapd -y
 snap install --classic certbot -y
 
 wget -O /tmp/odoo-helper-install.bash https://gitlab.com/katyukha/odoo-helper-scripts/raw/master/install-system.bash;
-bash /tmp/odoo-helper-install.bash -y;
+bash /tmp/odoo-helper-install.bash;
 odoo-helper install pre-requirements
 odoo-helper install postgres
 odoo-helper install postgres odoo odoo
