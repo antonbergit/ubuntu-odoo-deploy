@@ -41,10 +41,14 @@ odoo-helper install pre-requirements
 odoo-helper install postgres
 odoo-helper install postgres odoo odoo
 
-su postgres psql UPDATE pg_database SET datcollate='en_US.UTF-8', datctype='en_US.UTF-8' WHERE datname='template0';
-
 odoo-install --install-dir /opt/odoo-17.0 --odoo-version 17.0 --odoo-branch 17.0 --download-archive on --single-branch on --build-python 3.10.13 --http-port 8069 --conf-opt-admin_passwd ${ODOPWD} --conf-opt-workers 3 --conf-opt-proxy_mode True --sys-deps --ikwid
 
 chown -R ${TMPUSR}:odoo /opt/odoo-17.0
 
 cat info.log
+
+echo "sudo su postgres"
+echo "psql"
+echo "UPDATE pg_database SET datcollate='en_US.UTF-8', datctype='en_US.UTF-8' WHERE datname='template0';"
+echo "quit"
+echo "exit"
