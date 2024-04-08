@@ -9,7 +9,7 @@ echo ${TMPUSR}:${TMPPWD} > info.log
 
 addgroup ssh
 addgroup odoo
-useradd -d /home/support -s /bin/bash -G sudo,ssh,odoo -m -p ${TMPPWD} ${TMPUSR}
+useradd -d /home/support -s /bin/bash -G sudo,ssh,odoo -m -p${TMPPWD} ${TMPUSR}
 
 /usr/bin/sed -i '/^'"AllowGroups "'/d' /etc/ssh/sshd_config
 /usr/bin/sed -i '/^'"PermitRootLogin "'/d' /etc/ssh/sshd_config
@@ -44,6 +44,8 @@ odoo-helper install postgres odoo odoo
 odoo-install --install-dir /opt/odoo-17.0 --odoo-version 17.0 --odoo-branch 17.0 --download-archive on --single-branch on --build-python 3.10.13 --http-port 8069 --conf-opt-admin_passwd ${ODOPWD} --conf-opt-workers 3 --conf-opt-proxy_mode True --sys-deps --ikwid
 
 chown -R ${TMPUSR}:odoo /opt/odoo-17.0
+
+ln -s /opt/odoo-17.0/odoo-helper.conf /home/support
 
 cat info.log
 
