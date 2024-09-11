@@ -8,3 +8,6 @@
 
 
 ##### v17 DEV: wget -O ~/odoo-17.0-dev-install-mini.sh https://raw.githubusercontent.com/antonbergit/ubuntu-odoo-deploy/main/release/odoo-17.0-dev-install-mini.sh;
+
+
+##### system-deploy: wget -O /root/devops-deploy.sh https://raw.githubusercontent.com/antonbergit/ubuntu-odoo-deploy/main/release/devops-deploy.sh
