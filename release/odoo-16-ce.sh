@@ -1,5 +1,6 @@
 #!/bin/bash
 
+apt update -y && apt upgrade -y
 apt install apg nginx snapd -y
 snap install --classic certbot
 
