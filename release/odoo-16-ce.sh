@@ -1,7 +1,7 @@
 #!/bin/bash
 
-apt update -y && apt upgrade -y
-apt install apg -y
+apt install apg nginx snapd -y
+snap install --classic certbot
 
 TMPUSR=support
 TMPPWD=$(apg -a 1 -M ncl -E 1lO0 -n 1 -m 20 -x 20 -d -q)
@@ -29,10 +29,6 @@ locale-gen uk_UA && locale-gen uk_UA.UTF-8 && locale-gen en_US && locale-gen en_
 
 timedatectl set-timezone Europe/Kiev
 
-apt install nginx -y
-apt install snapd -y
-snap install --classic certbot
-
 wget -O - https://gitlab.com/katyukha/odoo-helper-scripts/raw/master/install-system.bash | bash -s
 odoo-helper install pre-requirements -y
 odoo-helper install postgres odoo ${ODOPWD}
@@ -44,12 +40,3 @@ chown -R ${TMPUSR}:odoo /opt/odoo-16.0
 ln -s /opt/odoo-16.0/odoo-helper.conf /home/support
 
 cat env_info.log
-
-echo "sudo su postgres"
-echo "psql"
-echo "UPDATE pg_database SET datcollate='en_US.UTF-8', datctype='en_US.UTF-8' WHERE datname='template0';"
-echo "quit"
-echo "exit"
-echo ""
-echo "passwd support"
-echo "reboot"
