@@ -1,11 +1,15 @@
 #!/bin/bash
 
+apt update -y && apt upgrade -y
 apt install apg -y
 
 TMPUSR=support
-TMPPWD=$(apg -a 1 -M ncl -E 1lO0 -n 1 -m 14 -x 14 -d -q)
-ODOPWD=$(apg -a 1 -M ncl -E 1lO0 -n 1 -m 14 -x 14 -d -q)
-echo ${TMPUSR}:${TMPPWD} > info.log
+TMPPWD=$(apg -a 1 -M ncl -E 1lO0 -n 1 -m 20 -x 20 -d -q)
+ODOPWD=$(apg -a 1 -M ncl -E 1lO0 -n 1 -m 20 -x 20 -d -q)
+ADMPWD=$(apg -a 1 -M ncl -E 1lO0 -n 1 -m 20 -x 20 -d -q)
+echo ${TMPUSR}:${TMPPWD} > env_info.log
+echo 'ODOPWD':${ODOPWD} >> env_info.log
+echo 'ADMPWD':${ADMPWD} >> env_info.log
 
 addgroup ssh
 addgroup odoo
@@ -23,11 +27,7 @@ useradd -d /home/support -s /bin/bash -G sudo,ssh,odoo -m -p${TMPPWD} ${TMPUSR}
 
 systemctl restart sshd
 
-locale-gen uk_UA
-locale-gen uk_UA.UTF-8
-locale-gen en_US
-locale-gen en_US.UTF-8
-update-locale
+locale-gen uk_UA && locale-gen uk_UA.UTF-8 && locale-gen en_US && locale-gen en_US.UTF-8 && update-locale
 
 timedatectl set-timezone Europe/Kiev
 
@@ -35,19 +35,17 @@ apt install nginx -y
 apt install snapd -y
 snap install --classic certbot
 
-wget -O /tmp/odoo-helper-install.bash https://gitlab.com/katyukha/odoo-helper-scripts/raw/master/install-system.bash;
-bash /tmp/odoo-helper-install.bash;
-odoo-helper install pre-requirements
-odoo-helper install postgres
-odoo-helper install postgres odoo odoo
+wget -O - https://gitlab.com/katyukha/odoo-helper-scripts/raw/master/install-system.bash | bash -s
+odoo-helper install pre-requirements -y
+odoo-helper install postgres odoo ${ODOPWD}
 
-odoo-install --install-dir /opt/odoo-16.0 --odoo-version 16.0 --odoo-branch 16.0 --download-archive on --single-branch on --build-python 3.8.10 --http-port 8069 --conf-opt-admin_passwd ${ODOPWD} --conf-opt-workers 3 --conf-opt-proxy_mode True --sys-deps --ikwid
+odoo-install --install-dir /opt/odoo-16.0 --odoo-version 16.0 --odoo-branch 16.0 --download-archive on --single-branch on --build-python 3.8.10 --http-port 8069 --conf-opt-admin_passwd ${ODOPWD} --conf-opt-workers 3 --conf-opt-proxy_mode True --conf-opt-gevent_port 8072 --conf-opt-db_password ${ODOPWD} --sys-deps --ikwid
 
 chown -R ${TMPUSR}:odoo /opt/odoo-16.0
 
-ln -s /opt/odoo-17.0/odoo-helper.conf /home/support
+ln -s /opt/odoo-16.0/odoo-helper.conf /home/support
 
-cat info.log
+cat env_info.log
 
 echo "sudo su postgres"
 echo "psql"
