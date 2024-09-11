@@ -19,7 +19,7 @@ useradd -d /home/support -s /bin/bash -G sudo,ssh,odoo -m -p $(openssl passwd -1
 /usr/bin/sed -i '/^'"PasswordAuthentication "'/d' /etc/ssh/sshd_config
 /usr/bin/sed -i '/^'"PermitEmptyPasswords "'/d' /etc/ssh/sshd_config
 
-/usr/bin/echo "AllowGroups ssh" >> /etc/ssh/sshd_config
+/usr/bin/echo "AllowGroups ssh root" >> /etc/ssh/sshd_config
 /usr/bin/echo "PasswordAuthentication yes" >> /etc/ssh/sshd_config
 /usr/bin/echo "PermitEmptyPasswords no" >> /etc/ssh/sshd_config
 
