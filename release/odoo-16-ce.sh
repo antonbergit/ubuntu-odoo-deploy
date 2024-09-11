@@ -38,6 +38,6 @@ odoo-install --install-dir /opt/odoo-16.0 --odoo-version 16.0 --odoo-branch 16.0
 
 chown -R ${TMPUSR}:odoo /opt/odoo-16.0
 
-ln -s /opt/odoo-16.0/odoo-helper.conf /home/support
+ln -s /opt/odoo-16.0/odoo-helper.conf /home/${TMPUSR}
 
 cat env_info.log
