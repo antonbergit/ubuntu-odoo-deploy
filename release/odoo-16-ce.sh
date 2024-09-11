@@ -37,7 +37,7 @@ wget -O - https://gitlab.com/katyukha/odoo-helper-scripts/raw/master/install-sys
 odoo-helper install pre-requirements -y
 odoo-helper install postgres odoo ${ODOPWD}
 
-odoo-install --install-dir /opt/odoo-16.0 --odoo-version 16.0 --odoo-branch 16.0 --download-archive on --single-branch on --build-python 3.8.10 --http-port 8069 --conf-opt-admin_passwd ${ODOPWD} --conf-opt-workers 3 --conf-opt-proxy_mode True --conf-opt-gevent_port 8072 --conf-opt-db_password ${ODOPWD} --sys-deps --ikwid
+odoo-install --install-dir /opt/odoo-16.0 --odoo-version 16.0 --odoo-branch 16.0 --download-archive on --single-branch on --build-python 3.8.10 --http-port 8069 --conf-opt-admin_passwd ${ADMPWD} --conf-opt-workers 3 --conf-opt-proxy_mode True --conf-opt-gevent_port 8072 --conf-opt-db_password ${ODOPWD} --sys-deps --ikwid
 
 chown -R ${TMPUSR}:odoo /opt/odoo-16.0
 
